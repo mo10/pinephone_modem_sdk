@@ -1,0 +1,37 @@
+name: Build
+
+on:
+  push:
+    branches: [ "kirkstone" ]
+  pull_request:
+    branches: [ "kirkstone" ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Install deps
+      run: sudo apt-get install -y php gcab gawk wget git diffstat unzip texinfo gcc build-essential chrpath socat cpio python3 python3-pip python3-pexpect xz-utils debianutils iputils-ping python3-git python3-jinja2 libegl1-mesa libsdl1.2-dev pylint xterm python3-subunit mesa-common-dev zstd liblz4-tool
+    
+    - name: init
+      run: ./init.sh
+      
+    # - name: Cache Yocto build
+    #   id: cache-yocto
+    #   uses: actions/cache@v3
+    #   with:
+    #     path: yocto/build
+    #     key: ${{ runner.os }}-yocto
+        
+    - name: Build all
+      run: make build VERSION="0.0.1"
+      
+    - name: Archive build
+      uses: actions/upload-artifact@v3
+      with:
+        name: package.tar.gz
+        path: target
