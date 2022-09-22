@@ -21,7 +21,7 @@ echo "2. Get meta-qcom layer"
 if [ ! -d "yocto/meta-qcom" ]
 then
     echo "--> Cloning meta-qcom repository"
-    git clone -b $YOCTOBRANCH https://github.com/Biktorgj/meta-qcom.git yocto/meta-qcom
+    git clone -b $YOCTOBRANCH https://github.com/mo10/meta-qcom.git yocto/meta-qcom
 else
     echo "--> Updating meta-qcom layer..."
     cd yocto/meta-qcom && \
