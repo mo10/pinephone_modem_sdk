@@ -9,7 +9,7 @@ echo "0. Fetching LK2nd fork..."
 if [ ! -d "lk2nd" ]
 then
     echo "--> Fetching forked lk2nd tree..."
-    git clone -b quectel-eg25-timer https://github.com/Biktorgj/lk2nd.git
+    git clone -b patch_qdc507 https://github.com/mo10/lk2nd.git
 else
     echo "--> Updating lk2nd..."
     cd lk2nd && \
@@ -21,7 +21,7 @@ echo "1. Fetching Yocto"
 if [ ! -d "yocto" ]
 then
     echo "--> Cloning Yocto repository from the Yocto Project"
-    git clone -b $YOCTOBRANCH git://git.yoctoproject.org/poky yocto
+    git clone -b $YOCTOBRANCH https://github.com/yoctoproject/poky.git yocto
 else
     echo "--> Updating yocto..."
     cd yocto && \
@@ -33,7 +33,7 @@ echo "2. Get meta-qcom layer"
 if [ ! -d "yocto/meta-qcom" ]
 then
     echo "--> Cloning meta-qcom repository"
-    git clone -b $YOCTOBRANCH https://github.com/Biktorgj/meta-qcom.git yocto/meta-qcom
+    git clone -b $YOCTOBRANCH https://github.com/mo10/meta-qcom.git yocto/meta-qcom
 else
     echo "--> Updating meta-qcom layer..."
     cd yocto/meta-qcom && \
